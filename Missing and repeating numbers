@@ -1,0 +1,31 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+
+    public static int[] missingAndRepeating(ArrayList<Integer> arr, int n) {
+        HashMap<Integer,Integer> hm=new HashMap<Integer,Integer>();
+        for(int i=1;i<=n;i++)hm.put(i,0);
+        for(int i=0;i<n;i++){
+            hm.put(arr.get(i),hm.get(arr.get(i))+1);
+        }
+        int[] ans=new int[2];int i=0;
+        for(Map.Entry<Integer,Integer> e:hm.entrySet()){
+            if(i<2){
+                if(e.getValue()==0){
+                ans[0]=e.getKey();
+                i++;
+                }
+                if(e.getValue()>1){
+                ans[1]=e.getKey();
+                i++;
+                }
+            }
+            else{
+                break;
+            }
+        }
+        return ans;
+    }
+}
