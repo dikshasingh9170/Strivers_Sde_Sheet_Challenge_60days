@@ -1,0 +1,23 @@
+class GfG
+{
+    int maxLen(int a[], int n)
+    {
+        Map<Integer,Integer> m = new HashMap<>();
+        int sum=0;
+        int temp=0;
+        int max=Integer.MIN_VALUE;
+        m.put(0,0);
+        for(int i=0;i<n;i++){
+            sum +=a[i];
+            if(!m.containsKey(sum))
+                m.put(sum,i+1);
+            else
+                temp= i+1-m.get(sum);
+                if(temp>max){
+                    max=temp;
+                    temp=0; 
+                }
+        }
+        return max;
+    }
+}
