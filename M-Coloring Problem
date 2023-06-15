@@ -1,0 +1,33 @@
+class solve {
+    public boolean graphColoring(boolean graph[][], int m, int n) {
+        int [] color=new int[n];
+        if(solve(0,graph,color,n,m)) return true;
+        return false;
+    }
+    public static boolean isPossible(boolean[][] graph,int[] color,int node,int check){
+        for(int i=0;i<graph.length;i++){
+            if(i==node){
+                for(int j=0;j<graph[0].length;j++){
+                    if(graph[i][j] && i!=j){
+                        if(color[j]==check) return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    public static boolean solve(int node,boolean graph[][],int[] color,int n,int m){
+        if(node==n){
+            return true;
+        }
+        for(int col=1;col<=m;col++){
+            if(isPossible(graph,color,node,col)){
+                color[node]=col;
+                if(solve(node+1,graph,color,n,m)) return true;
+                else color[node]=0;
+            }
+        }
+        return false;
+    }
+   
+}
