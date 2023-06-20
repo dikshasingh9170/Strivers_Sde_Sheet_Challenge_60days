@@ -1,0 +1,25 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+	public static void sortStack(Stack<Integer> stack) {
+		sorts(stack);
+	}
+	public static void sorts(Stack<Integer> s) {
+	   	if(s.size() == 1) return;
+		
+		int temp = s.pop();
+		sorts(s);
+		insert(s,temp); 
+	}
+	public static void insert(Stack<Integer> s ,int ele) {
+	    if(s.size() == 0 || s.peek() <= ele) {
+	        s.push(ele);
+	        return;
+	    }
+	    
+	    int temp = s.pop();
+	    insert(s,ele);
+	    s.push(temp);
+	}
+}
