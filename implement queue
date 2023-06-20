@@ -1,0 +1,55 @@
+import java.util.* ;
+import java.io.*; 
+public class Queue {
+    Node head;
+    Node tail;
+    int size;
+    Queue() {
+        head=null;
+        tail=null;
+        size=0;
+    }
+    boolean isEmpty() {
+        return size==0;
+    }
+
+    void enqueue(int data) {
+        size++;
+        Node newNode = new Node(data);
+         if (head == null) {
+            head = newNode;
+            tail = newNode;
+            return;
+        }
+        tail.next = newNode;
+        tail = newNode;
+        return;
+    }
+
+    int dequeue() {
+        if (isEmpty()) {
+            return -1;
+        }
+        int ans=head.data;
+        head=head.next;
+        size--;
+        return ans;
+    }
+
+    int front() {
+        if (isEmpty()) {
+            return -1;
+        }
+        return head.data;
+    }
+
+}
+class Node {
+    int data;
+    Node next;
+    Node(int data) {
+        this.data = data;
+        next = null;
+    }
+}
+
